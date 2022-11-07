@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script>
+    //Wait for main body (document) to load
+        $(document).ready(function(){
+            $('.postcodeEntry').on('submit', function(e){
+                e.preventDefault();
+                var postcode = $("#pcode").val()
+                $.get("https://ggvfog559k.execute-api.us-east-1.amazonaws.com/GETDATA?CO12ZQ", function(data, status){
+                    postcode = data.postcode
+                    pc = data.parliamentary_constituency
+                    nearest_postcodes = data.nearest_postcodes
+                    planning_data = data.planning_data
+                    total_crime = data.total_crime
+                    crime_date = data.crime_date
+                    category = data.category
+                    street_name = data.street_name
+                    outcome_status = data.outcome_status
+                    
+
+                    $('#postcode_display').text(postcode)
+                    $('#pc_display').text(pc)
+                    $('#nearest_postcodes_display').text(nearest_postcodes)
+                    $('#planning_data_display').text(planning_data)
+                    $('#total_crime_display').text(total_crime)
+                    $('#crime_date_display').text(crime_date)
+                    $('#category_display').text(category)
+                    $('#street_name_display').text(street_name)
+                    $('#outcome_status_display').text(outcome_status)
+
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="header">
+    <h1>Postcode Info</h1>
+</div>
+<div id="wrapper">
+    <div id="postcode_lookup_form_div">
+        <form class="postcodeEntry">
+
+            <label class="text" for="pcode">Postcode:</label><br><br>
+            <input class="inputField" id="pcode" type="text" name="postcode" placeholder="Eg. CO12ZQ"><br>
+            <input class="subButton" type="submit" value="Search">
+        </form>
+    </div>
+    <div id="loading">
+        <h2>Loading</h2>
+    </div>
+
+    <div id="results_container">
+        <div class="results">
+            <h2>Postcode</h2>
+            <span id="postcode_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>Parliamentary Constituency</h2>
+            <span id="pc_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>nearest_postcodes</h2>
+            <span id="nearest_postcodes_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>planning_data</h2>
+            <span id="planning_data_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>total_crime</h2>
+            <span id="total_crime_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>crime_date</h2>
+            <span id="crime_date_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>category</h2>
+            <span id="category_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>street_name</h2>
+            <span id="street_name_display"></span>
+        </div>
+
+        <div class="results">
+            <h2>outcome_status</h2>
+            <span id="outcome_status_display"></span>
+        </div>
+
+        
+
+    </div>
+    <div id="map"></div>
+
+</div>
+</body>
+</html>
