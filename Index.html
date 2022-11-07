@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
@@ -11,8 +11,10 @@
         $(document).ready(function(){
             $('.postcodeEntry').on('submit', function(e){
                 e.preventDefault();
+                $('#loading').css('visibility', 'visible');
                 var postcode = $("#pcode").val()
                 $.get("https://ggvfog559k.execute-api.us-east-1.amazonaws.com/GETDATA?CO12ZQ", function(data, status){
+
                     postcode = data.postcode
                     pc = data.parliamentary_constituency
                     nearest_postcodes = data.nearest_postcodes
@@ -22,17 +24,40 @@
                     category = data.category
                     street_name = data.street_name
                     outcome_status = data.outcome_status
+
+                    $.each(nearest_postcodes, function( index, value ) {
+                        var nearest_pc_append = $("<p></p>").text(index);
+                        $("#nearest_postcodes_div").append(nearest_pc_append);
+                    });
+
+                    $.each(category, function( index, value ) {
+                        var category_name_append = $("<h2></h2>").text(index);
+                        var category_stat_append = $("<p></p>").text(value);
+                        $("#category_results_div").append(category_name_append, category_stat_append);
+                    });
+
+                    $.each(street_name, function( index, value ) {
+                        var street_name_append = $("<h2></h2>").text(index);
+                        var street_name_stat_append = $("<p></p>").text(value);
+                        $("#street_name_results_div").append(street_name_append, street_name_stat_append);
+                    });
+
+                    $.each(outcome_status, function( index, value ) {
+                        var outcome_status_append = $("<h2></h2>").text(index);
+                        var outcome_status_stat_append = $("<p></p>").text(value);
+                        $("#outcome_status_results_div").append(outcome_status_append, outcome_status_stat_append);
+                    });
                     
 
                     $('#postcode_display').text(postcode)
                     $('#pc_display').text(pc)
-                    $('#nearest_postcodes_display').text(nearest_postcodes)
                     $('#planning_data_display').text(planning_data)
                     $('#total_crime_display').text(total_crime)
                     $('#crime_date_display').text(crime_date)
-                    $('#category_display').text(category)
-                    $('#street_name_display').text(street_name)
-                    $('#outcome_status_display').text(outcome_status)
+
+                    $( "#wrapper-loading" ).remove();
+                    $('#wrapper-results').css('visibility', 'visible');
+
 
                 });
             });
@@ -44,7 +69,7 @@
 <div class="header">
     <h1>Postcode Info</h1>
 </div>
-<div id="wrapper">
+<div id="wrapper-loading">
     <div id="postcode_lookup_form_div">
         <form class="postcodeEntry">
 
@@ -54,23 +79,36 @@
         </form>
     </div>
     <div id="loading">
-        <h2>Loading</h2>
+        <p>Loading</p>
     </div>
+</div>
+<div id="wrapper-results">
+    <div id="postcode_lookup_again_div">
+        <form class="postcodeEntry" id="lookup_2">
 
-    <div id="results_container">
-        <div class="results">
-            <h2>Postcode</h2>
+            <label class="text" for="pcode">Postcode:</label><br><br>
+            <input class="inputField" id="pcode" type="text" name="postcode" placeholder="Eg. CO12ZQ"><br>
+            <input class="subButton" type="submit" value="Search">
+        </form>
+    </div>
+    <div id="results_about">
+        <div id="postcode_result">
+            <h2 id="postcode_text">Postcode</h2>
             <span id="postcode_display"></span>
         </div>
 
-        <div class="results">
-            <h2>Parliamentary Constituency</h2>
+        <div id="pc_result">
+            <h2 id="pc_text">Parliamentary Constituency</h2>
             <span id="pc_display"></span>
         </div>
+    </div>
 
-        <div class="results">
+
+
+
+    <div>
+        <div class="results" id="nearest_postcodes_div">
             <h2>nearest_postcodes</h2>
-            <span id="nearest_postcodes_display"></span>
         </div>
 
         <div class="results">
@@ -88,17 +126,16 @@
             <span id="crime_date_display"></span>
         </div>
 
-        <div class="results">
+        <div class="results" id="category_results_div">
             <h2>category</h2>
-            <span id="category_display"></span>
         </div>
 
-        <div class="results">
+        <div class="results" id="street_name_results_div">
             <h2>street_name</h2>
             <span id="street_name_display"></span>
         </div>
 
-        <div class="results">
+        <div class="results" id="outcome_status_results_div">
             <h2>outcome_status</h2>
             <span id="outcome_status_display"></span>
         </div>
