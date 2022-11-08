@@ -18,6 +18,14 @@
                 //call api and get data
                 var postcode = $("#pcode").val()
                 $.get("https://ggvfog559k.execute-api.us-east-1.amazonaws.com/GETDATA?"+postcode, function(data, status){
+                   status = data.status
+                   if (status != 200){
+                        $('#loadingText').text("An error occurred");
+                        $('#error').text(data.error);
+                        $("#error").css('visibility', 'visible');
+
+                   }
+                   else{
 
                     //separate data from response
                     postcode = data.postcode
@@ -29,6 +37,8 @@
                     category = data.category
                     street_name = data.street_name
                     outcome_status = data.outcome_status
+
+                    $("#Local_Postcode_container").empty();
 
                     //add data from nearest postcodes to screen
                     $.each(nearest_postcodes, function( index, value ) {
@@ -46,6 +56,7 @@
                         $( "#Local_Postcode_container" ).css("column-count", "3")
                     }
 
+                    $("#category_data").empty();
 
                     //add data from category to screen
                     $.each(category, function( index, value ) {
@@ -64,6 +75,7 @@
                         $( "#category_data" ).css("column-count", "3")
                     }
 
+                    $("#location_data").empty();
 
                     //add data from street_name postcodes to screen
                     $.each(street_name, function( index, value ) {
@@ -82,6 +94,7 @@
                         $( "#location_data" ).css("column-count", "3")
                     }
 
+                    $("#outcome_status_results").empty();
 
                     //add data from outcome_status postcodes to screen
                     $.each(outcome_status, function( index, value ) {
@@ -99,6 +112,7 @@
                         $( "#outcome_status_results" ).css("column-count", "3")
                     }
 
+                    $("#planning_content").empty();
 
                     //adding link to full application
                     $.each(planning_data, function( index, value ) {
@@ -117,7 +131,10 @@
                     $('#crime_date_total').text("Total crime for "+crime_date+" : "+total_crime)
 
                     if(parseInt(total_crime) > 10){
-                        $("#crime_date_total").css("background", "red")
+                        $("#Section_2_left").css("border", "2px solid #ff8989")
+                        $("#Section_2_right").css("border", "2px solid #ff8989")
+                        $("#spacer").css("border", "2px solid #ff8989")
+                        $(".crime_headder").css("color", "#ff8989")
                     }
 
 
@@ -132,7 +149,7 @@
 
                     $('#Wrapper').css('visibility', 'visible');
 
-
+                    }
                 });
             });
         });
@@ -156,7 +173,8 @@
 
 <div id="wrapper-loading">
     <div id="loading">
-        <p>Loading</p>
+        <p id="loadingText">Loading</p>
+        <p id="error"></p>
     </div>
 </div>
 
@@ -180,17 +198,17 @@
 
     <div id="Section_2">
         <div id="s2h">
-            <h2>Crime Statistics</h2>
+            <h2 class="crime_headder">Crime Statistics</h2>
         <span id="crime_date_total"></span>
     </div>
         <div id="Section_2_left">
-            <h2>Category</h2>
+            <h2 class="crime_headder">Category</h2>
             <div id="category_data">
 
             </div>
         </div>
         <div id="Section_2_right">
-            <h2>Location</h2>
+            <h2 class="crime_headder">Location</h2>
             <div id="location_data">
 
             </div>
@@ -198,9 +216,10 @@
     </div>
 
     <div id="Section_3">
-        <h2>Outcome Status</h2>
+        <div id="spacer">
+        <h2 class="crime_headder">Outcome Status</h2>
         <div id="outcome_status_results">
-
+        </div>
         </div>
     </div>
 

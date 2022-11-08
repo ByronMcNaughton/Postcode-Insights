@@ -63,23 +63,35 @@ form {
     }
 
 #wrapper-loading{
-    position: relative;
+    visibility: hidden;
+    width: 100%;
+    text-align: center;
+    padding-top: 200px;
 }
 
 #loading{
+
+}
+#loadingText{
     color: #add8e6;
     font-weight: bold;
     font-size: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 210px 0 0 -75px;
+}
+#error{
     visibility: hidden;
 }
 
 #Wrapper{
     visibility: hidden;
     display: inline;
+}
+
+#Wrapper p{
+    font-size: 20px;
+}
+
+#Wrapper span{
+    font-size: 20px;
 }
 
 
@@ -100,7 +112,7 @@ form {
     width: 48%;
     float:right;
     border-radius: 25px;
-    border: 2px solid #b19cd9;
+    border: 2px solid #add8e6;
     padding-bottom: 25px
 }
 
@@ -108,6 +120,7 @@ form {
     text-align: center;
     clear:both;
     padding: 30px;
+    padding-top: 60px;
 }
 
 #s2h{
@@ -116,25 +129,35 @@ form {
 }
 
 #Section_2_left{
-    width: 50%;
+    width: 48%;
     float:left;
+    border-radius: 25px;
+    border: 2px solid #add8e6;
 }
 
 #Section_2_right{
-    width: 50%;
+    width: 48%;
     float:right;
+    border-radius: 25px;
+    border: 2px solid #add8e6;
+}
+
+#spacer{
+    border-radius: 25px;
+    border: 2px solid #add8e6;
 }
 
 #Section_3{
+    padding-top: 60px;
     text-align: center;
     clear:both;
-    padding-top: 35px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 #outcome_status_results{
-    width: 100%;
+    padding-right: 20%;
+    padding-left:20%;
 }
 
 body h2{
