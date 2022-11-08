@@ -25,7 +25,7 @@ body, html {
     width: 500px;
     height: 135px;
     position:absolute;
-    top: 50%;
+    top: 180px;
     left: 50%;
     margin: -25px 0 0 -275px;
     }
@@ -66,10 +66,6 @@ form {
     position: relative;
 }
 
-#wrapper-results{
-    visibility: hidden;
-}
-
 #loading{
     color: #add8e6;
     font-weight: bold;
@@ -81,54 +77,62 @@ form {
     visibility: hidden;
 }
 
-#postcode_lookup_again_div{
-    position:absolute;
-    top: 35px;
-    left: 310px;
-    margin: 0 0 0 -25px;
-}
-#lookup_2{
-    padding: 20px;
-    width: 200px;
-    height: 120px;
+#Wrapper{
+    visibility: hidden;
+    display: inline;
 }
 
-
-#results_about{
-    position:relative;
+#Section_1{
+    padding-top: 15px;
+    text-align: center;
 }
 
-#postcode_result{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0 0 0 -40px;
+#Section_1_left{
+    width: 50%;
+    float:left;
 }
 
-#postcode_result, h2{
-    color: #72bcd4;
+#Section_1_right{
+
+    width: 50%;
+    float:right;
 }
 
-#postcode_text{
-    margin: 0 0 0 -5px;
+#Local_Postcode_container{
+    column-count: 3;
 }
 
-#pc_result{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin: 75px 0 0 -38px;
+#Section_2{
+    text-align: center;
 }
 
-#pc_text{
-    margin: 0 0 0 -110px;
+#s2h{
+    width: 100%;
 }
 
-#postcode_display{
-    color: black;
-    font-size: 20px;
+#Section_2_left{
+    width: 50%;
+    float:left;
 }
 
-#pc_display{
-    font-size: 20px;
+#category_data{
+    column-count: 3;
+}
+
+#Section_2_right{
+    width: 50%;
+    float:right;
+}
+
+#location_data{
+    column-count: 3;
+}
+
+#Section_3{
+    text-align: center;
+}
+
+#outcome_status_results{
+    column-count: 3;
+    width: 100%
 }
