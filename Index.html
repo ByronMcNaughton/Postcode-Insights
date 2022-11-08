@@ -31,15 +31,13 @@
                     });
 
                     $.each(category, function( index, value ) {
-                        var category_name_append = $("<h2></h2>").text(index);
-                        var category_stat_append = $("<p></p>").text(value);
-                        $("#category_results_div").append(category_name_append, category_stat_append);
+                        var category_append = $("<h2></h2>").text(index+" : "+value);
+                        $("#category_results_div").append(category_append);
                     });
 
                     $.each(street_name, function( index, value ) {
-                        var street_name_append = $("<h2></h2>").text(index);
-                        var street_name_stat_append = $("<p></p>").text(value);
-                        $("#street_name_results_div").append(street_name_append, street_name_stat_append);
+                        var street_name_append = $("<h2></h2>").text(index+" : "+value);
+                        $("#street_name_results_div").append(street_name_append);
                     });
 
                     $.each(outcome_status, function( index, value ) {
@@ -108,7 +106,7 @@
 
     <div>
         <div class="results" id="nearest_postcodes_div">
-            <h2>nearest_postcodes</h2>
+            <h2>Local Postcodes</h2>
         </div>
 
         <div class="results">
@@ -117,7 +115,7 @@
         </div>
 
         <div class="results">
-            <h2>total_crime</h2>
+            <h2>Total Reported Criminal Incidents</h2>
             <span id="total_crime_display"></span>
         </div>
 
