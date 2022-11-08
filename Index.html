@@ -116,6 +116,10 @@
                     $('#pc_display').text(pc)
                     $('#crime_date_total').text("Total crime for "+crime_date+" : "+total_crime)
 
+                    if(parseInt(total_crime) > 10){
+                        $("#crime_date_total").css("background", "red")
+                    }
+
 
                     $( ".postcodeEntry" ).css("width", "200")
                     $( ".postcodeEntry" ).css("height", "120")
