@@ -11,17 +11,15 @@
         $(document).ready(function(){
             $('.postcodeEntry').on('submit', function(e){
                 e.preventDefault();
+
+                //display loading
                 $('#loading').css('visibility', 'visible');
+
+                //call api and get data
                 var postcode = $("#pcode").val()
                 $.get("https://ggvfog559k.execute-api.us-east-1.amazonaws.com/GETDATA?"+postcode, function(data, status){
 
-                    $('#Local_Postcode_container').empty();
-                    $('#category_data').empty();
-                    $('#location_data').empty();
-                    $('#outcome_status_results').empty();
-
-
-
+                    //separate data from response
                     postcode = data.postcode
                     pc = data.parliamentary_constituency
                     nearest_postcodes = data.nearest_postcodes
@@ -32,6 +30,7 @@
                     street_name = data.street_name
                     outcome_status = data.outcome_status
 
+                    //add data from nearest postcodes to screen
                     $.each(nearest_postcodes, function( index, value ) {
                         var nearest_pc_append = $("<p></p>").text(index);
                         nearest_pc_append.css('display', 'inline-block');
@@ -39,6 +38,16 @@
                         $("#Local_Postcode_container").append(nearest_pc_append);
                     });
 
+                    //arranging column size based on how much data
+                    if (Object.keys(nearest_postcodes).length>2){
+                        $( "#Local_Postcode_container" ).css("column-count", "2")
+                    }
+                    if(Object.keys(nearest_postcodes).length>4){
+                        $( "#Local_Postcode_container" ).css("column-count", "3")
+                    }
+
+
+                    //add data from category to screen
                     $.each(category, function( index, value ) {
                         var category_append = $("<p></p>").text(index+" : "+value);
                         category_append.css('display', 'inline-block');
@@ -46,6 +55,17 @@
                         $("#category_data").append(category_append);
                     });
 
+
+                    //arranging column size based on how much data
+                    if (Object.keys(category).length>3){
+                        $( "#category_data" ).css("column-count", "2")
+                    }
+                    if(Object.keys(category).length>6){
+                        $( "#category_data" ).css("column-count", "3")
+                    }
+
+
+                    //add data from street_name postcodes to screen
                     $.each(street_name, function( index, value ) {
                         var street_name_append = $("<p></p>").text(index+" : "+value);
                         street_name_append.css('display', 'inline-block');
@@ -53,6 +73,17 @@
                         $("#location_data").append(street_name_append);
                     });
 
+
+                    //arranging column size based on how much data
+                    if (Object.keys(street_name).length>3){
+                        $( "#location_data" ).css("column-count", "2")
+                    }
+                    if(Object.keys(street_name).length>6){
+                        $( "#location_data" ).css("column-count", "3")
+                    }
+
+
+                    //add data from outcome_status postcodes to screen
                     $.each(outcome_status, function( index, value ) {
                         var outcome_status_stat_append = $("<p></p>").text(index+" : "+value);
                         outcome_status_stat_append.css('display', 'inline-block');
@@ -60,9 +91,31 @@
                         $("#outcome_status_results").append(outcome_status_stat_append);
                     });
 
+                    //arranging column size based on how much data
+                    if (Object.keys(outcome_status).length>3){
+                        $( "#outcome_status_results" ).css("column-count", "2")
+                    }
+                    if(Object.keys(outcome_status).length>6){
+                        $( "#outcome_status_results" ).css("column-count", "3")
+                    }
+
+
+                    //adding link to full application
+                    $.each(planning_data, function( index, value ) {
+                        var address = $("<p></p>").text(value.address);
+                        var desc = $("<p></p>").text(value.description);
+                        var url = value.url;
+                        var url = $("<a>View Full Details</a>").attr("class", "button").attr("href", value.url).attr("target", "_blank");
+                        $("#planning_content").append(address, desc, url);
+
+
+                    });
+
+
                     $('#postcode_display').text(postcode)
                     $('#pc_display').text(pc)
-                    $('#planning_data_display').text(planning_data)
+                    $('#crime_date_total').text("Total crime for "+crime_date+" : "+total_crime)
+
 
                     $( ".postcodeEntry" ).css("width", "200")
                     $( ".postcodeEntry" ).css("height", "120")
@@ -122,8 +175,10 @@
     </div>
 
     <div id="Section_2">
-        <div id="s2h"><h2>Crime Statistics</h2></div>
-
+        <div id="s2h">
+            <h2>Crime Statistics</h2>
+        <span id="crime_date_total"></span>
+    </div>
         <div id="Section_2_left">
             <h2>Category</h2>
             <div id="category_data">
@@ -144,6 +199,10 @@
 
         </div>
     </div>
+
+    <div id="Section_4">
+        <h2>Local Planning Applications</h2>
+        <div id="planning_content"></div></div>
 
 </div>
 

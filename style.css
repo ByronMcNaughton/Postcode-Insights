@@ -82,32 +82,37 @@ form {
     display: inline;
 }
 
+
 #Section_1{
     padding-top: 15px;
     text-align: center;
+    clear:both;
+    padding: 30px;
 }
 
 #Section_1_left{
-    width: 50%;
+    width: 48%;
     float:left;
 }
 
 #Section_1_right{
 
-    width: 50%;
+    width: 48%;
     float:right;
-}
-
-#Local_Postcode_container{
-    column-count: 3;
+    border-radius: 25px;
+    border: 2px solid #b19cd9;
+    padding-bottom: 25px
 }
 
 #Section_2{
     text-align: center;
+    clear:both;
+    padding: 30px;
 }
 
 #s2h{
     width: 100%;
+    padding-bottom: 20px;
 }
 
 #Section_2_left{
@@ -115,24 +120,30 @@ form {
     float:left;
 }
 
-#category_data{
-    column-count: 3;
-}
-
 #Section_2_right{
     width: 50%;
     float:right;
 }
 
-#location_data{
-    column-count: 3;
-}
-
 #Section_3{
     text-align: center;
+    clear:both;
+    padding-top: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #outcome_status_results{
-    column-count: 3;
-    width: 100%
+    width: 100%;
+}
+
+body h2{
+color: #add8e6;
+}
+
+#Section_4{
+    clear:both;
+    padding-top: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
