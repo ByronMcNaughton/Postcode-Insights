@@ -13,7 +13,8 @@ Program includes:
 - AWS Code Pipeline
 - Front End (HTML, CSS, JQuery)
 
-This project takes data regarding a given postcode from three public API's and combines them to present to the end user in a readable format
+This project takes data regarding a given postcode from three public API's and combines them to present to the end user in a readable format\
+The site is both desktop and mobile friendly (To an extent)
 
 ## API Documentation
 [Postcodes.io](https:/https:/postcodes.io)\
