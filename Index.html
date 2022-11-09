@@ -116,11 +116,13 @@
 
                     //adding link to full application
                     $.each(planning_data, function( index, value ) {
-                        var address = $("<p></p>").text(value.address);
+                        var new_div = $("<div></div>").attr("class", "planning_item");
+                        var address = $("<p></p>").text(value.address).attr("class", "planning_title").css("font-size", "22px");
                         var desc = $("<p></p>").text(value.description);
                         var url = value.url;
                         var url = $("<a>View Full Details</a>").attr("class", "button").attr("href", value.url).attr("target", "_blank");
-                        $("#planning_content").append(address, desc, url);
+                        new_div.append(address, desc, url);
+                        $("#planning_content").append(new_div);
 
 
                     });
@@ -224,7 +226,7 @@
     </div>
 
     <div id="Section_4">
-        <h2>Local Planning Applications</h2>
+        <h2 id="planning_section_title">Local Planning Applications</h2>
         <div id="planning_content"></div></div>
 
 </div>

@@ -167,6 +167,35 @@ color: #add8e6;
 #Section_4{
     clear:both;
     padding-top: 35px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+#planning_section_title{
+    text-align: center;
+}
+
+.planning_title{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.planning_item{
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 25px;
+    border: 2px solid #add8e6;
+}
+
+.planning_item a{
+  text-decoration: none;
+  background-color: #add8e6;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
