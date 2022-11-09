@@ -17,10 +17,10 @@ from collections import Counter
 # How long the data is stored before updating
 days_to_subtract = 1
 
-Host = "lin-11314-6893-mysql-primary.servers.linodedb.net"
-Name = "user_4"
-Password = "3_9_mRu0dVKy_jJKRaqhddA2pbxyJl"
-Database = "db4"
+Host = Host
+Name = Name
+Password = Password
+Database = Database
 
 
 def nearest_postcodes(postcode, longitude, latitude, cur, update):
