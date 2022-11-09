@@ -44,3 +44,4 @@ In regards to API Errors, the plan was:
 5) Wait x Seconds and re-run the search
     - Possibly a second lambda is triggered, which checked the db, checks if the api is down, and tries to query and update again
 6) Update info for user if available
+-
